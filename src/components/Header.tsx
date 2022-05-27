@@ -18,7 +18,7 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu } from 'react-icons/fi';
 
 import type { FlexProps, StackProps } from '@chakra-ui/react';
 import type { WithTranslation } from 'next-i18next';
@@ -63,9 +63,12 @@ const Logo = () => {
   );
 };
 
-const ButtonLogin = ({ t }: Omit<WithTranslation, 'i18n' | 'tReady'>) => {
+const ButtonLogin = ({
+  t,
+  ...rest
+}: Omit<WithTranslation, 'i18n' | 'tReady'> & FlexProps) => {
   return (
-    <Flex>
+    <Flex {...rest}>
       <Button
         color="haipe.orange.800"
         bgColor="white"
@@ -105,25 +108,20 @@ export const HeaderOld: NextPage<FlexProps> = ({ w, maxW, px }) => {
           align="center"
           justifyContent="space-between"
         >
+          <Logo />
+
+          <DesktopNav t={t} display={{ base: 'none', md: 'flex' }} />
+
+          <ButtonLogin t={t} display={{ base: 'none', md: 'flex' }} />
+
           <IconButton
             ref={btnRef}
             display={{ base: 'flex', md: 'none' }}
             onClick={onToggle}
-            icon={isOpen ? <FiX size={30} /> : <FiMenu size={30} />}
+            icon={<FiMenu size={30} />}
             variant="ghost"
-            aria-label="Nav of the Haipe"
+            aria-label="Button Nav of the Haipe"
           />
-
-          <Logo />
-          <Box w="4" />
-
-          <Flex display={{ base: 'none', md: 'flex' }}>
-            <DesktopNav t={t} />
-          </Flex>
-
-          <Flex display={{ base: 'none', md: 'flex' }}>
-            <ButtonLogin t={t} />
-          </Flex>
         </HStack>
       </Flex>
 
