@@ -51,7 +51,7 @@ export const theme = extendTheme({
     global: {
       body: {
         bg: 'haipe.gray.50',
-        color: 'haipe.gray.900',
+        color: 'haipe.blue.900',
       },
     },
   },

@@ -1,13 +1,13 @@
-import { Flex } from '@chakra-ui/react';
+import { Container, Flex } from '@chakra-ui/react';
 
 import type { NextPage } from 'next';
-import type { FlexProps } from '@chakra-ui/react';
+import type { ContainerProps, SimpleGridProps } from '@chakra-ui/react';
 
 import SEO from '@/components/SEO';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
-const Layout: NextPage<FlexProps> = ({
+const Layout: NextPage<ContainerProps & SimpleGridProps> = ({
   children,
   w = 'full',
   maxW = 1278,
@@ -27,9 +27,17 @@ const Layout: NextPage<FlexProps> = ({
 
       <Header maxW={maxW} w={w} px={px} />
 
-      <Flex as="main" flex={flex} w={w} maxW={maxW} py={py} px={px} {...rest}>
+      <Container
+        as="main"
+        flex={flex}
+        w={w}
+        maxW={maxW}
+        py={py}
+        px={px}
+        {...rest}
+      >
         {children}
-      </Flex>
+      </Container>
 
       <Footer />
     </Flex>
